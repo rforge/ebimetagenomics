@@ -1,0 +1,3 @@
+importFrom(sads,octav)
+export(getProjectSummary,projectSamples,runsBySample,getRunOtu,mergeOtu,getSampleOtu)
+
