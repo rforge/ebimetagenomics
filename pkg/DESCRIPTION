@@ -1,11 +1,11 @@
 Package: ebimetagenomics
 Type: Package
 Title: EBI Metagenomics Portal
-Version: 0.1
+Version: 0.2
 Date: 2016-10-15
 Author: Darren Wilkinson
 Maintainer: Darren Wilkinson <darren.wilkinson@ncl.ac.uk>
 Description: This package contains code for querying the EBI Metagenomics Portal (https://www.ebi.ac.uk/metagenomics/). Current focus is on taxa abundance data. 
 License: LGPL-3
-Depends: R (>= 3.2.0), sads
+Depends: R (>= 3.0.0), sads
 Suggests: vegan
