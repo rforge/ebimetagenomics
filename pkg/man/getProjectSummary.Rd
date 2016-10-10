@@ -25,7 +25,8 @@ with the data frame via the attribute \code{project.id}.
 
 \examples{
 ps=getProjectSummary("SRP047083")
-projectSamples(ps)
+# Tabulate number of runs per by sample
+table(ps$Sample.ID)
 }
 
 \keyword{EMG}
