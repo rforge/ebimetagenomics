@@ -11,6 +11,9 @@ DEFAULT:
 check:
 	R CMD check pkg
 
+check-cran:
+	R CMD check --as-cran pkg
+
 build:
 	R CMD build pkg
 
