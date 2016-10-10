@@ -6,6 +6,11 @@ require(sads)
 
 ## Functions for working with EMP data
 
+getProjectsList<-function() {
+    url="https://www.ebi.ac.uk/metagenomics/projects/doExportDetails?search=Search&studyVisibility=ALL_PUBLISHED_PROJECTS"
+    read.csv(url,stringsAsFactors=FALSE)
+}
+
 read.project.csv<-function(fileName,projectID,...) {
     summ=read.csv(fileName,stringsAsFactors=FALSE,...)
     attr(summ,"project.id")=projectID

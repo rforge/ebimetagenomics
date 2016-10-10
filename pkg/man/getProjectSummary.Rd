@@ -20,7 +20,7 @@ with the project, one row per run. The \code{projectID} is associated
 with the data frame via the attribute \code{project.id}.
 }
 
-\seealso{\code{\link{projectSamples}}, \code{\link{projectRuns}},
+\seealso{\code{\link{getProjectsList}}, \code{\link{projectSamples}}, \code{\link{projectRuns}},
   \code{\link{runsBySample}}}
 
 \examples{
