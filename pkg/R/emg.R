@@ -84,6 +84,16 @@ getSampleOtu<-function(summ,sampleID,verb=TRUE,plot.preston=FALSE) {
     Reduce(mergeOtu,runData)
 }
 
+convertOtuTad <- function(otu) {
+  sad = as.data.frame(table(otu$Count))
+  names(sad) = c("abund","Freq")
+  sad$abund = as.numeric(as.character(sad$abund))
+  sad
+}
+
+
+
+
 
 ##############################################################################################
 

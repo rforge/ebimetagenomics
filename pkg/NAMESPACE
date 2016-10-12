@@ -1,5 +1,6 @@
 importFrom("sads","octav")
 importFrom("graphics", "plot")
 importFrom("utils", "read.csv", "read.delim")
-export(getProjectsList,getProjectSummary,projectSamples,projectRuns,runsBySample,getRunOtu,mergeOtu,getSampleOtu)
+export(getProjectsList,getProjectSummary,projectSamples,projectRuns,runsBySample)
+export(getRunOtu,mergeOtu,getSampleOtu,convertOtuTad)
 
