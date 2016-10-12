@@ -8,11 +8,14 @@ require(sads)
 
 getProjectsList<-function() {
     url="https://www.ebi.ac.uk/metagenomics/projects/doExportDetails?search=Search&studyVisibility=ALL_PUBLISHED_PROJECTS"
-    read.csv(url,stringsAsFactors=FALSE)
+    pl=read.csv(url,stringsAsFactors=FALSE)
+    rownames(pl)=pl$Study.ID
+    pl
 }
 
 read.project.csv<-function(fileName,projectID,...) {
     summ=read.csv(fileName,stringsAsFactors=FALSE,...)
+    rownames(summ)=summ$Run.ID
     attr(summ,"project.id")=projectID
     summ
 }
@@ -36,7 +39,7 @@ runsBySample<-function(summ,sampleID) {
 }
 
 otu.url<-function(summ,runID) {
-    runData=summ[summ$Run.ID==runID,]
+    runData=summ[runID,]
     projectID=attr(summ,"project.id")
     url=paste("https://www.ebi.ac.uk/metagenomics//projects",projectID,"samples",runData["Sample.ID"],"runs",runID,"results/versions",sprintf("%.1f",runData["Release.version"]),"taxonomy/OTU-TSV",sep="/")
     url
@@ -45,6 +48,7 @@ otu.url<-function(summ,runID) {
 read.otu.tsv<-function(fileName,...) {
     otu = read.delim(fileName,header=FALSE,skip=2,colClasses=c("character","numeric","character"),stringsAsFactors=FALSE,...)
     names(otu) = c("OTU","Count","Tax")
+    rownames(otu) = otu$OTU
     otu[order(-otu$Count),]
 }
 
@@ -54,7 +58,7 @@ getRunOtu<-function(summ,runID,verb=FALSE,plot.preston=FALSE) {
         message(runID)
     otu=read.otu.tsv(url)
     if (plot.preston)
-        plot(octav(otu$Count),main=paste("Preston plot for",runID))
+        selectMethod("plot","octav")(octav(otu$Count),main=paste("Preston plot for",runID))
     otu
 }
 
@@ -71,9 +75,7 @@ getSampleOtu<-function(summ,sampleID,verb=TRUE,plot.preston=FALSE) {
     for (run in runs) {
         if (verb)
             message(paste(run,", ",sep=""),appendLF=FALSE)
-        otu=getRunOtu(summ,run)
-        if (plot.preston)
-            plot(octav(otu$Count),main=paste("Preston plot for",run))
+        otu=getRunOtu(summ,run,plot.preston=plot.preston)
         runData[[run]]=otu
     }
     if (verb)
