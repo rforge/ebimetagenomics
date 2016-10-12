@@ -7,5 +7,5 @@ Author: Darren Wilkinson
 Maintainer: Darren Wilkinson <darren.wilkinson@ncl.ac.uk>
 Description: Functions for querying the EBI Metagenomics Portal (https://www.ebi.ac.uk/metagenomics/). The current main focus is on taxa abundance data, but the intention is that this package should evolve into a general purpose package for working with EBI Metagenomics data using R. 
 License: LGPL-3
-Depends: R (>= 3.0.0), sads
+Depends: R (>= 3.0.0), sads, methods
 Suggests: vegan
