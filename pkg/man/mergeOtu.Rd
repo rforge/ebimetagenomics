@@ -3,16 +3,15 @@
 \title{Merges two OTU count data data frames to produce a combined OTU count data data frame}
 
 \description{
-This function merges two OTU count data data frames, such as returned by \code{getRunOtu}. The merged OTU data is returned as a data frame. The ordering of the two data frames to be merged should not be significant.
+This function merges two or more OTU count data data frames, such as returned by \code{getRunOtu}. The merged OTU data is returned as a data frame. The ordering of the two data frames to be merged should not be significant. The operation of merging should also be associative.
 }
 
 \usage{
-mergeOtu(otu1,otu2)
+mergeOtu(...)
 }
 
 \arguments{
-  \item{otu1}{The first OTU data frame to be merged.}
-  \item{otu2}{The second OTU data frame to be merged.}
+  \item{...}{A sequence of OTU data frames to be merged.}
 }
 
 \value{

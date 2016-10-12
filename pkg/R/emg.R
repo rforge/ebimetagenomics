@@ -62,10 +62,11 @@ getRunOtu<-function(summ,runID,verb=FALSE,plot.preston=FALSE) {
     otu
 }
 
-mergeOtu<-function(otu1,otu2) {
-  stack=rbind(otu1[,1:2],otu2[,1:2])
+mergeOtu<-function(...) {
+  stack=rbind(...)
   comb=tapply(stack$Count,stack$OTU,sum)
-  otu=data.frame(OTU=as.vector(rownames(comb)),Count=as.vector(comb))
+  otu=data.frame(OTU=as.vector(rownames(comb)),Count=as.vector(comb),Tax=stack[rownames(comb),3])
+  rownames(otu)=rownames(comb)
   otu[order(-otu$Count),]
 }
 
