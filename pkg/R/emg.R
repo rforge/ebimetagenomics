@@ -1,10 +1,6 @@
-## Read EBI TAD
+## ebimetagenomics package code
 
 require(sads)
-
-##############################################################################################
-
-## Functions for working with EMP data
 
 getProjectsList<-function() {
     url="https://www.ebi.ac.uk/metagenomics/projects/doExportDetails?search=Search&studyVisibility=ALL_PUBLISHED_PROJECTS"
@@ -91,11 +87,18 @@ convertOtuTad <- function(otu) {
   sad
 }
 
+plotOtu <- function(otu) {
+  comm=otu$Count
+  op=par(mfrow=c(2,2))
+  barplot(comm,xlab="Species",ylab="Abundance",main="Taxa abundance")
+  tad = convertOtuTad(otu)
+  barplot(tad[,2],names.arg=tad[,1],xlab="Abundance",
+                                ylab="# species",main="TAD")
+  selectMethod("plot","octav")(octav(comm),main="Preston plot")
+  plot(rad(comm),main="Rank abundance")
+  par(op)
+}
 
-
-
-
-##############################################################################################
 
 
 
