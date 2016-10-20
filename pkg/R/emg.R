@@ -95,7 +95,7 @@ plotOtu <- function(otu) {
   barplot(tad[,2],names.arg=tad[,1],xlab="Abundance",
                                 ylab="# species",main="TAD")
   selectMethod("plot","octav")(octav(comm),main="Preston plot")
-  plot(rad(comm),main="Rank abundance")
+  selectMethod("plot","rad")(rad(comm),main="Rank abundance")
   par(op)
 }
 
