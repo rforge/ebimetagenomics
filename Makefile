@@ -39,7 +39,8 @@ commit:
 	svn commit
 	make update
 
-
+edit:
+	emacs Makefile README pkg/NAMESPACE pkg/DESCRIPTION pkg/man/*.Rd pkg/R/*.R &
 
 # eof
 

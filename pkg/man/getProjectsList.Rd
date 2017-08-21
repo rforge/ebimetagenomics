@@ -17,6 +17,7 @@ An R data frame containing a list of all public EMG projects, one row per projec
 \seealso{\code{\link{getProjectSummary}}, \code{\link{projectSamples}}}
 
 \examples{
+\dontrun{
 pl = getProjectsList()
 str(pl)
 
@@ -26,6 +27,7 @@ ps = getProjectSummary(biggies[3])
 
 # Find some 16S projects
 pl$Study.ID[agrep("16S",pl$Project.Name)]
+}
 }
 
 \keyword{EMG}
