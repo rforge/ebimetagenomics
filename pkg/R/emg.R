@@ -129,7 +129,7 @@ analyseOtu <- function(otu,plot=TRUE) {
     qs = c(0.75,0.90,0.95,0.99)
     Ls = sapply(qs,function(q){intSolve(function(x){coverage(x)-q},1,10^12)})
     if (plot)
-        plotOtu(otu$Count)
+        plotOtu(otu)
     c(
         "S.obs" = ns,
         "N.obs" = ni,
