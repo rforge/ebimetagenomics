@@ -143,10 +143,10 @@ analyseOtu <- function(otu,plot=TRUE) {
         "se.break" = br$se,
         "S.vln" = unname(vln[1]),
         "S.pln" = pln,
-        "L.75" = Ls[1],
-        "L.90" = Ls[2],
-        "L.95" = Ls[3],
-        "L.99" = Ls[4]
+        "N.75" = Ls[1],
+        "N.90" = Ls[2],
+        "N.95" = Ls[3],
+        "N.99" = Ls[4]
     )
 }
 
