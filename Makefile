@@ -2,7 +2,7 @@
 # Makefile for package checking building, installing, uninstalling, etc.
 
 PKG=ebimetagenomics
-VERSION=0.3
+VERSION=0.4
 
 DEFAULT:
 	make check
