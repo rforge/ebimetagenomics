@@ -31,7 +31,7 @@ otu2=getRunOtu(ps,runs[2])
 mergeOtu(otu1,otu2)
 
 # merge many:
-otuList=lapply(as.list(runs[1:10]),function(rid){getRunOtu(ps,rid)})
+otuList=lapply(as.list(runs[1:5]),function(rid){getRunOtu(ps,rid)})
 Reduce(mergeOtu,otuList)
 }
 
