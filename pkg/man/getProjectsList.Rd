@@ -21,11 +21,11 @@ pl = getProjectsList()
 str(pl)
 
 # Find big projects
-biggies = pl$Study.ID[pl$Number.Of.Samples >= 100]
+biggies = pl$accession[pl$samples_count >= 100]
 ps = getProjectSummary(biggies[3])
 
 # Find some 16S projects
-pl$Study.ID[agrep("16S",pl$Study.Name)]
+pl$Study.ID[agrep("16S",pl$study_name)]
 }
 
 \keyword{EMG}
