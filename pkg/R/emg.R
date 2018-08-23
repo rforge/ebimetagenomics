@@ -7,7 +7,7 @@ require(breakaway)
 getProjectsList<-function() {
     url="https://www.ebi.ac.uk/metagenomics/api/v1/studies?format=csv"
     pl=read.csv(url,stringsAsFactors=FALSE)
-    rownames(pl)=pl$secondary_accession
+    rownames(pl)=pl$accession
     pl
 }
 
