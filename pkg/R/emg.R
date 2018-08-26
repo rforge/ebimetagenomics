@@ -13,7 +13,11 @@ getProjectsList<-function() {
 
 read.project.csv<-function(fileName,projectID,...) {
     summ=read.csv(fileName,stringsAsFactors=FALSE,...)
-    rownames(summ)=summ$run
+    runID = sapply(sapply(summ$run,function(s){strsplit(s,'?',fixed=TRUE)[[1]][1]}),function(s){strsplit(s,'/',fixed=TRUE)[[1]]})
+    summ$run_id = runID[nrow(runID),]
+    sampleID = sapply(sapply(summ$sample,function(s){strsplit(s,'?',fixed=TRUE)[[1]][1]}),function(s){strsplit(s,'/',fixed=TRUE)[[1]]})
+    summ$sample_id = sampleID[nrow(sampleID),]
+    rownames(summ)=summ$run_id
     attr(summ,"project.id")=projectID
     summ
 }
@@ -25,21 +29,19 @@ getProjectSummary<-function(projectID) {
 }
 
 projectSamples<-function(summ) {
-    unique(sort(summ$sample))
+    unique(sort(summ$sample_id))
 }
 
 projectRuns<-function(summ) {
-    summ$run
+    summ$run_id
 }
 
 runsBySample<-function(summ,sampleID) {
-    summ$run[summ$sample==sampleID]
+    summ$run_id[summ$sample_id == sampleID]
 }
 
-otu.url<-function(summ,runURL) {
-    runData=summ[runURL,]
-    runID = strsplit(strsplit(runURL,'?',fixed=TRUE)[[1]][1],"/",fixed=TRUE)[[1]]
-    runID = runID[length(runID)]
+otu.url<-function(summ,runID) {
+    runData=summ[runID,]
     projectID=attr(summ,"project.id")
     if (runData["pipeline_version"] > 4) {
         file="MERGED_FASTQ_SSU_OTU.tsv"

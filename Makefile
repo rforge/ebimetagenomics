@@ -14,6 +14,9 @@ check:
 check-cran:
 	R CMD check --as-cran pkg
 
+check-all:
+	R CMD check --as-cran --run-donttest pkg
+
 build:
 	R CMD build pkg
 
