@@ -25,11 +25,12 @@ the results of various analyses. As well as computing various different estimate
 \seealso{\code{\link{getSampleOtu}}, \code{\link{getRunOtu}}, \code{\link{plotOtu}}}
 
 \examples{
+\donttest{
 ps=getProjectSummary("SRP047083")
 samp=projectSamples(ps)
 runs=runsBySample(ps,samp[2])
 otu=getRunOtu(ps,runs[1])
 analyseOtu(otu,plot=FALSE)
-}
+}}
 
 \keyword{EMG}
