@@ -9,7 +9,8 @@ DEFAULT:
 	make install
 
 check:
-	R CMD check pkg
+	make build
+	R CMD check $(PKG)_$(VERSION).tar.gz
 
 check-cran:
 	make build

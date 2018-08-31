@@ -3,6 +3,32 @@
 require(sads)
 require(vegan)
 require(breakaway)
+require(jsonlite)
+
+baseURL = "https://www.ebi.ac.uk/metagenomics/api/v1"
+
+combinePages = function(url,ps=80) {
+    if (grepl('?',url,fixed=TRUE))
+        sep = "&"
+    else
+        sep = "?"
+    firstURL =paste(url,paste0("page_size=",ps),sep=sep)
+    first = fromJSON(firstURL)
+    lastPage = first$meta$pagination$pages
+    if (lastPage == 1)
+        first$data
+    else {
+        startURL = paste(url,paste0("page_size=",ps,"&page="),sep=sep)
+        urls = paste0(startURL,2:lastPage)
+        pages = lapply(urls,function(x) fromJSON(x)$data)
+        rbind_pages(c(list(first$data),pages))
+    }
+}
+
+getStudiesList = function() {
+    url = paste(baseURL,"studies",sep="/")
+    combinePages(url)
+}
 
 getProjectsList<-function() {
     url="https://www.ebi.ac.uk/metagenomics/api/v1/studies?format=csv"
