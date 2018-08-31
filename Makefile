@@ -17,7 +17,8 @@ check-cran:
 	R CMD check --as-cran $(PKG)_$(VERSION).tar.gz
 
 check-all:
-	R CMD check --as-cran --run-donttest pkg
+	make build
+	R CMD check --as-cran --run-donttest $(PKG)_$(VERSION).tar.gz
 
 build:
 	R CMD build pkg
