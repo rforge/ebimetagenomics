@@ -4,7 +4,6 @@ importFrom("breakaway", "breakaway")
 importFrom("graphics", "plot", "barplot", "par")
 importFrom("utils", "read.csv", "read.delim")
 importFrom("methods", "selectMethod")
-importFrom("jsonlite", "fromJSON", "rbind_pages")
 export(getProjectsList,getProjectSummary,projectSamples,projectRuns,runsBySample,read.project.csv)
 export(getRunOtu,mergeOtu,getSampleOtu,convertOtuTad,plotOtu,read.otu.tsv,analyseOtu)
 
