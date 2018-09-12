@@ -42,7 +42,7 @@ runsBySample<-function(summ,sampleID) {
     summ$run_id[summ$sample_id == sampleID]
 }
 
-otu.url <- function(summ,runID) {
+otu.url.old <- function(summ,runID) {
     runData=summ[runID,]
     projectID=attr(summ,"project.id")
     if (runData["pipeline_version"] > 4) {
@@ -57,9 +57,21 @@ otu.url <- function(summ,runID) {
     url
 }
 
-otu.url.new <- function(summ,runID) {
-    analysisURL = paste(baseURL,"runs",run,"analyses",sep="/")
-    
+otu.url <- function(summ,runID) {
+    analysisURL = paste(baseURL,"runs",runID,"analyses?format=csv",sep="/")
+    analysis = read.csv(analysisURL,stringsAsFactors=FALSE)
+    aurl = analysis$url
+    ##message(aurl) # DEBUG
+    stem = strsplit(aurl,'?',fixed=TRUE)[[1]][1]
+    durl = paste(stem,"downloads?format=csv",sep="/")
+    ##message(durl) # DEBUG
+    downloads = read.csv(durl,stringsAsFactors=FALSE)
+    downloads = downloads[substr(downloads$group_type,1,3)=="Tax",]
+    otuurl = downloads$url[grep("otu.tsv",downloads$id[substr(downloads$group_type,1,3)=="Tax"],ignore.case=TRUE)]
+    if (length(otuurl)>1)
+        otuurl = otuurl[grep("SSU",otuurl)][1]
+    ##message(otuurl) # DEBUG
+    otuurl
     }
 
 read.otu.tsv<-function(fileName,...) {
