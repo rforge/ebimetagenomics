@@ -42,22 +42,7 @@ runsBySample<-function(summ,sampleID) {
     summ$run_id[summ$sample_id == sampleID]
 }
 
-otu.url.old <- function(summ,runID) {
-    runData=summ[runID,]
-    projectID=attr(summ,"project.id")
-    if (runData["pipeline_version"] > 4) {
-        file="MERGED_FASTQ_SSU_OTU.tsv"
-    } else if (runData["pipeline_version"] > 1) {
-        file="MERGED_FASTQ_OTU.tsv"
-    } else {
-        file="FASTQ_OTU.tsv"
-    }
-    url=paste(baseURL,"analyses",runData$accession,"file",paste(runID,file,sep="_"),sep="/")
-    ## message(url) # DEBUG
-    url
-}
-
-otu.url <- function(summ,runID) {
+otu.url <- function(runID) {
     analysisURL = paste(baseURL,"runs",runID,"analyses?format=csv",sep="/")
     analysis = read.csv(analysisURL,stringsAsFactors=FALSE)
     aurl = analysis$url
@@ -81,8 +66,8 @@ read.otu.tsv<-function(fileName,...) {
     otu[order(-otu$Count),]
 }
 
-getRunOtu<-function(summ,runID,verb=FALSE,plot.preston=FALSE) {
-    url=otu.url(summ,runID)
+getRunOtu<-function(runID,verb=FALSE,plot.preston=FALSE) {
+    url=otu.url(runID)
     ##message(url) # DEBUG
     if (verb)
         message(runID)
@@ -106,7 +91,7 @@ getSampleOtu<-function(summ,sampleID,verb=TRUE,plot.preston=FALSE) {
     for (run in runs) {
         if (verb)
             message(paste(run,", ",sep=""),appendLF=FALSE)
-        otu=getRunOtu(summ,run,plot.preston=plot.preston)
+        otu=getRunOtu(run,plot.preston=plot.preston)
         runData[[run]]=otu
     }
     if (verb)

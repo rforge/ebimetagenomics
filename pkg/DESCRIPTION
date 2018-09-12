@@ -2,7 +2,7 @@ Package: ebimetagenomics
 Type: Package
 Title: EBI Metagenomics Portal
 Version: 0.6
-Date: 2018-08-28
+Date: 2018-09-12
 Author: Darren Wilkinson
 Maintainer: Darren Wilkinson <darren.wilkinson@ncl.ac.uk>
 Description: Functions for querying the EBI Metagenomics Portal <https://www.ebi.ac.uk/metagenomics/>. The current main focus is on taxa abundance data, but the intention is that this package should evolve into a general purpose package for working with EBI Metagenomics data using R. 
