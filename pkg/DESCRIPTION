@@ -1,7 +1,7 @@
 Package: ebimetagenomics
 Type: Package
 Title: EBI Metagenomics Portal
-Version: 0.6
+Version: 0.7
 Date: 2018-10-28
 Author: Darren Wilkinson
 Maintainer: Darren Wilkinson <darren.wilkinson@ncl.ac.uk>
